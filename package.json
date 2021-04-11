@@ -1,0 +1,24 @@
+{
+  "name": "com.akaal.rasm",
+  "displayName": "RASM - Rage Against The State Machine",
+  "description": "Rage Against the State Machine (RASM) is a simple yet powerful state machine for Unity with composable states and productivity-focused extensions",
+  "version": "0.0.1",
+  "unity": "2019.4",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h-sigma/rasm.git"
+  },
+  "author": {
+    "name": "Harshdeep Singh",
+    "email": "harsh@aka.al",
+    "url": "https://github.com/h-sigma"
+  },
+  "keywords": [
+    "state",
+    "machine",
+    "rage",
+    "rasm"
+  ],
+  "type": "tool"
+}

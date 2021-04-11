@@ -1,0 +1,16 @@
+{
+    "name": "RASM.FSM",
+    "references": [
+        "GUID:fd5f97732c6085c4ea2e2c4d03764cdb",
+        "GUID:73106583b323919458c1e05166706ce3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
