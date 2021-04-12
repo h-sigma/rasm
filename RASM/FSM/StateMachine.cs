@@ -17,7 +17,7 @@ namespace RASM.FSM
         private SrlTransitionPair[] transitions;
 
         [Serializable]
-        internal struct SrlTransitionPair
+        public struct SrlTransitionPair
         {
             public int fromState;
             public int toState;
@@ -39,6 +39,34 @@ namespace RASM.FSM
 
         public void OnAfterDeserialize()
         {
+            EntryState = GetState(entryState);
+        }
+
+        #endregion
+
+        public FSMState GetState(int stateId)
+        {
+            return stateId < states.Count && stateId >= 0 ? states[stateId] : null;
+        }
+
+        #region Properties
+
+        public FSMState CurrentState { get; private set; }
+
+        public GameObject Agent     { get; private set; }
+        public bool       IsRunning { get; private set; }
+
+        public List<FSMState> States => states;
+
+        #endregion
+
+        private bool _didInit;
+
+        private void Init()
+        {
+            if (_didInit) return;
+            _didInit = true;
+
             for (int index = 0; index < states.Count; index++)
             {
                 FSMState fsmState = states[index];
@@ -58,24 +86,40 @@ namespace RASM.FSM
                     }
                 }
             }
-
-            EntryState = GetState(entryState);
         }
 
-        private FSMState GetState(int stateId)
+        public void Start()
         {
-            return stateId < states.Count && stateId >= 0 ? states[stateId] : null;
+            Init();
+
+            if (IsRunning) return;
+            IsRunning = true;
+            if (CurrentState == null)
+            {
+                SetState(EntryState);
+            }
         }
 
-        #endregion
-
-        public FSMState CurrentState { get; private set; }
-
-        public GameObject Agent { get; private set; }
+        public void Stop()
+        {
+            IsRunning = false;
+        }
 
         public void Update(float dt)
         {
-            CurrentState?.Update(dt);
+            if (!IsRunning) return;
+            if (CurrentState != null)
+            {
+                CurrentState.Update(dt);
+                foreach (TransitionStatePair pair in TransitionMap[CurrentState])
+                {
+                    if (pair.Transition?.DoTransition(CurrentState) == true)
+                    {
+                        SetState(pair.State);
+                        break;
+                    }
+                }
+            }
         }
 
         public void SetAgent(GameObject gameObject)

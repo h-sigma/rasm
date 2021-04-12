@@ -24,6 +24,6 @@ namespace RASM.FSM
         public abstract void OnEnter();
         public abstract void OnExit();
         public abstract void Update(float dt);
-        public abstract bool IsFinished { get; }
+        public abstract bool IsFinished { get; protected set; }
     }
 }

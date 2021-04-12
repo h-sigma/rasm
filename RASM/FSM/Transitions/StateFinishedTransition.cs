@@ -7,9 +7,9 @@ namespace RASM.FSM.Transitions
     {
         #region Overrides of FSMTransition
 
-        public override bool DoTransition()
+        public override bool DoTransition(FSMState from)
         {
-            return From.IsFinished;
+            return from.IsFinished;
         }
 
         #endregion

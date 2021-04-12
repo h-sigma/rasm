@@ -2,19 +2,13 @@
 
 namespace RASM.FSM
 {
+    /// <summary>
+    /// Transition base class. A transition decides whether it's time to move to another state.
+    /// A transition object will be shared among state machine instances.
+    /// </summary>
     [Serializable]
     public abstract class FSMTransition
     {
-        [NonSerialized]
-        private FSMState _from;
-
-        public FSMState From => _from;
-
-        public void Awake(FSMState transitionFrom)
-        {
-            _from = transitionFrom;
-        }
-
-        public abstract bool DoTransition();
+        public abstract bool DoTransition(FSMState from);
     }
 }

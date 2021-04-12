@@ -28,6 +28,12 @@ namespace RASM.FSM
         private void Awake()
         {
             stateMachine.SetAgent(gameObject);
+            stateMachine.Start();
+        }
+
+        private void OnDestroy()
+        {
+            stateMachine.Stop();
         }
 
         private void Update()

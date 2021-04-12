@@ -38,7 +38,11 @@ namespace RASM.FSM.Tasks
             Debug.Log(string.Format(onUpdateLog, dt));
         }
 
-        public override bool IsFinished => isFinished;
+        public override bool IsFinished
+        {
+            get => isFinished;
+            protected set => isFinished = value;
+        }
 
         #endregion
     }

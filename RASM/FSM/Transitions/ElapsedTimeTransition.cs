@@ -11,9 +11,9 @@ namespace RASM.FSM.Transitions
 
         #region Overrides of FSMTransition
 
-        public override bool DoTransition()
+        public override bool DoTransition(FSMState fromState)
         {
-            return From.ElapsedTime >= duration;
+            return fromState.ElapsedTime >= duration;
         }
 
         #endregion
